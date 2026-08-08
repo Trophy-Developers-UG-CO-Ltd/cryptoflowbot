@@ -1,36 +1,282 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CryptoFlow Bot
 
-## Getting Started
+Official frontend website for **CryptoFlow Bot**, an automated crypto trading platform.
 
-First, run the development server:
+The website is built with **Next.js 16**, **React 19**, **TypeScript**, **Tailwind CSS**, and deployed as a fully static site using **Cloudflare Workers Static Assets**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Production Domain
+
+```text
+https://cryptoflowbot.net
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technology Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Next.js 16.3
+- React 19
+- TypeScript
+- Tailwind CSS
+- Lucide React
+- pnpm
+- Cloudflare Workers
+- Cloudflare Static Assets
+- GitHub
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Architecture
 
-## Learn More
+CryptoFlow Bot uses a static Next.js export.
 
-To learn more about Next.js, take a look at the following resources:
+```text
+Next.js source
+      ↓
+pnpm build
+      ↓
+out/
+      ↓
+Cloudflare Worker Static Assets
+      ↓
+cryptoflowbot.net
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+No Node.js application server is required in production.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Local Development
 
-## Deploy on Vercel
+Install dependencies:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+pnpm install
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Start the development server:
+
+```bash
+pnpm dev
+```
+
+Open:
+
+```text
+http://localhost:3000
+```
+
+## Lint
+
+```bash
+pnpm lint
+```
+
+## Production Build
+
+```bash
+pnpm build
+```
+
+The static website is generated in:
+
+```text
+out/
+```
+
+Verify the export:
+
+```powershell
+Test-Path .\out\index.html
+```
+
+Expected:
+
+```text
+True
+```
+
+## Static Export Configuration
+
+`next.config.ts`
+
+```ts
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  output: "export",
+  images: {
+    unoptimized: true,
+  },
+};
+
+export default nextConfig;
+```
+
+## Cloudflare Deployment
+
+The production site is deployed through **Cloudflare Workers Static Assets**.
+
+`wrangler.jsonc`
+
+```jsonc
+{
+  "name": "cryptoflowbot",
+  "compatibility_date": "2026-08-08",
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page"
+  }
+}
+```
+
+### Cloudflare Build Configuration
+
+| Setting | Value |
+|---|---|
+| Production branch | `master` |
+| Root directory | `/` |
+| Build command | `pnpm build` |
+| Deploy command | `pnpm exec wrangler deploy` |
+| Version command | `npx wrangler versions upload` |
+
+### Manual Deployment
+
+Build:
+
+```bash
+pnpm build
+```
+
+Validate:
+
+```bash
+pnpm exec wrangler deploy --dry-run
+```
+
+Deploy:
+
+```bash
+pnpm exec wrangler deploy
+```
+
+## SEO
+
+The website includes:
+
+- Static server-rendered homepage HTML
+- `robots.txt`
+- `sitemap.xml`
+- Canonical metadata
+- Open Graph metadata
+- Twitter/X sharing metadata
+- Structured data
+- Static OG image
+- Crawlable public content
+
+Production SEO URLs:
+
+```text
+https://cryptoflowbot.net/
+https://cryptoflowbot.net/robots.txt
+https://cryptoflowbot.net/sitemap.xml
+https://cryptoflowbot.net/images/og.jpg
+```
+
+## Main Website Features
+
+- Responsive one-page landing page
+- CryptoFlow Bot product overview
+- Automated trading workflow
+- Supported exchange information
+- Getting-started requirements
+- Trading activity screenshots
+- Responsive earnings screenshot slider
+- Community support popup
+- WhatsApp community integration
+- Telegram integration
+- Registration CTA
+- Mobile navigation
+- FAQ
+- Risk disclosure
+- Desktop, tablet, and mobile layouts
+
+## Supported Exchanges
+
+The website currently references:
+
+- Binance
+- Kraken
+- Bybit
+- Hyperliquid
+- MEXC
+
+## Public Assets
+
+Important public assets are stored in:
+
+```text
+public/images/
+```
+
+Key files include:
+
+```text
+logo.png
+og.jpg
+binance.png
+screenshotearnings00.jpeg
+screenshotearnings01.jpeg
+screenshotearnings02.jpeg
+```
+
+## Environment Variables
+
+Production:
+
+```env
+NEXT_PUBLIC_SITE_URL=https://cryptoflowbot.net
+```
+
+Development:
+
+```env
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
+
+## Git Workflow
+
+Production branch:
+
+```text
+master
+```
+
+Typical deployment workflow:
+
+```bash
+pnpm lint
+pnpm build
+git add -A
+git commit -m "Update CryptoFlow Bot website"
+git push origin master
+```
+
+Cloudflare Workers Builds then builds and deploys the latest production commit automatically.
+
+## Repository
+
+```text
+https://github.com/Trophy-Developers-UG-CO-Ltd/cryptoflowbot
+```
+
+## Important Notes
+
+> The production website is intentionally statically exported.
+
+- Do not add server-only Next.js functionality without reviewing the hosting architecture.
+- Avoid API routes, Server Actions, and runtime image optimization unless the deployment architecture changes.
+- Interactive menus, sliders, and popups run client-side after the static HTML loads.
+- Trading results and earnings examples must not be presented as guarantees of future performance.
+
+## Risk Disclosure
+
+Cryptocurrency trading involves financial risk. Historical trading activity, screenshots, and past performance do not guarantee future results.
+
+---
+
+Developed and maintained by **Trophy Developers**.
