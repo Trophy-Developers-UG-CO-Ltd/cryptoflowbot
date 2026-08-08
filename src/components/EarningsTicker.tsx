@@ -11,6 +11,7 @@ import {
   useEffect,
   useRef,
   useState,
+  useSyncExternalStore,
 } from "react";
 
 const screenshots = [
@@ -31,65 +32,50 @@ const screenshots = [
   },
 ];
 
+function subscribeToViewport(callback: () => void) {
+  window.addEventListener("resize", callback);
+
+  return () => {
+    window.removeEventListener("resize", callback);
+  };
+}
+
+function getViewportSnapshot() {
+  return window.innerWidth;
+}
+
+function getServerViewportSnapshot() {
+  return 1200;
+}
+
 export default function EarningsTicker() {
   const viewportRef = useRef<HTMLDivElement>(null);
 
   const [activeIndex, setActiveIndex] = useState(0);
-  const [slidesPerView, setSlidesPerView] = useState(3);
   const [isPaused, setIsPaused] = useState(false);
+
+  const viewportWidth = useSyncExternalStore(
+    subscribeToViewport,
+    getViewportSnapshot,
+    getServerViewportSnapshot
+  );
+
+  const slidesPerView =
+    viewportWidth < 700
+      ? 1
+      : viewportWidth < 1100
+        ? 2
+        : 3;
 
   const maxIndex = Math.max(
     0,
     screenshots.length - slidesPerView
   );
 
-  const safeActiveIndex = Math.min(activeIndex, maxIndex);
-
-  /*
-   * Responsive slides per view:
-   * 3 desktop
-   * 2 tablet
-   * 1 mobile
-   */
-  useEffect(() => {
-    const updateSlidesPerView = () => {
-      if (window.innerWidth < 700) {
-        setSlidesPerView(1);
-        return;
-      }
-
-      if (window.innerWidth < 1100) {
-        setSlidesPerView(2);
-        return;
-      }
-
-      setSlidesPerView(3);
-    };
-
-    updateSlidesPerView();
-
-    window.addEventListener(
-      "resize",
-      updateSlidesPerView
-    );
-
-    return () => {
-      window.removeEventListener(
-        "resize",
-        updateSlidesPerView
-      );
-    };
-  }, []);
-
-  /*
-   * Keep current slide within valid range
-   * after responsive breakpoint changes.
-   */
-  useEffect(() => {
-    setActiveIndex((current) =>
-      Math.min(current, maxIndex)
-    );
-  }, [maxIndex]);
+  const safeActiveIndex = Math.min(
+    activeIndex,
+    maxIndex
+  );
 
   const scrollToSlide = useCallback(
     (index: number) => {
@@ -104,7 +90,12 @@ export default function EarningsTicker() {
           ".earningsScreensCard"
         );
 
-      const target = cards[index];
+      const safeIndex = Math.max(
+        0,
+        Math.min(index, maxIndex)
+      );
+
+      const target = cards[safeIndex];
 
       if (!target) {
         return;
@@ -115,9 +106,9 @@ export default function EarningsTicker() {
         behavior: "smooth",
       });
 
-      setActiveIndex(index);
+      setActiveIndex(safeIndex);
     },
-    []
+    [maxIndex]
   );
 
   const nextSlide = useCallback(() => {
@@ -154,15 +145,8 @@ export default function EarningsTicker() {
     scrollToSlide,
   ]);
 
-  /*
-   * Auto-slide only where there are hidden slides.
-   * Desktop shows all 3, therefore no unnecessary motion.
-   */
   useEffect(() => {
-    if (
-      isPaused ||
-      maxIndex === 0
-    ) {
+    if (isPaused || maxIndex === 0) {
       return;
     }
 
@@ -179,10 +163,6 @@ export default function EarningsTicker() {
     nextSlide,
   ]);
 
-  /*
-   * Synchronize active dot when the user manually
-   * swipes the carousel.
-   */
   const handleScroll = () => {
     const viewport = viewportRef.current;
 
@@ -215,7 +195,10 @@ export default function EarningsTicker() {
     });
 
     setActiveIndex(
-      Math.min(closestIndex, maxIndex)
+      Math.min(
+        closestIndex,
+        maxIndex
+      )
     );
   };
 
@@ -236,9 +219,8 @@ export default function EarningsTicker() {
             </h2>
 
             <p>
-              Explore earnings and trading
-              activity screens from the
-              CryptoFlow Bot platform.
+              Explore earnings and trading activity
+              screens from the CryptoFlow Bot platform.
             </p>
           </div>
 
@@ -269,12 +251,8 @@ export default function EarningsTicker() {
 
       <div
         className="earningsScreensOuter"
-        onMouseEnter={() =>
-          setIsPaused(true)
-        }
-        onMouseLeave={() =>
-          setIsPaused(false)
-        }
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
       >
         <div
           ref={viewportRef}
@@ -325,8 +303,7 @@ export default function EarningsTicker() {
                     <ShieldCheck size={15} />
 
                     <span>
-                      CryptoFlow Bot platform
-                      screenshot
+                      CryptoFlow Bot platform screenshot
                     </span>
                   </div>
                 </article>
@@ -370,12 +347,11 @@ export default function EarningsTicker() {
         )}
 
         <p className="earningsScreensDisclosure">
-          Screenshots show historical platform
-          activity and are not a guarantee of
-          future trading results or profits.
+          Screenshots show historical platform activity
+          and are not a guarantee of future trading
+          results or profits.
         </p>
       </div>
     </section>
   );
 }
-
