@@ -1,3 +1,4 @@
+import UserTrustBadge from "@/components/UserTrustBadge";
 import EarningsTicker from "@/components/EarningsTicker";
 import CommunityPopup from "@/components/CommunityPopup";
 import MobileMenu from "@/components/MobileMenu";
@@ -411,6 +412,7 @@ export default function Home() {
       </section>
 
       <EarningsTicker />
+      <UserTrustBadge />
 
       <section className="section faqSection" id="faq">
         <div className="container">
@@ -530,6 +532,7 @@ export default function Home() {
     </main>
   );
 }
+
 
 
 
