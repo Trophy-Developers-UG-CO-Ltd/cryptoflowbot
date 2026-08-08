@@ -43,6 +43,8 @@ export default function EarningsTicker() {
     screenshots.length - slidesPerView
   );
 
+  const safeActiveIndex = Math.min(activeIndex, maxIndex);
+
   /*
    * Responsive slides per view:
    * 3 desktop
@@ -124,13 +126,13 @@ export default function EarningsTicker() {
     }
 
     const next =
-      activeIndex >= maxIndex
+      safeActiveIndex >= maxIndex
         ? 0
-        : activeIndex + 1;
+        : safeActiveIndex + 1;
 
     scrollToSlide(next);
   }, [
-    activeIndex,
+    safeActiveIndex,
     maxIndex,
     scrollToSlide,
   ]);
@@ -141,13 +143,13 @@ export default function EarningsTicker() {
     }
 
     const previous =
-      activeIndex <= 0
+      safeActiveIndex <= 0
         ? maxIndex
-        : activeIndex - 1;
+        : safeActiveIndex - 1;
 
     scrollToSlide(previous);
   }, [
-    activeIndex,
+    safeActiveIndex,
     maxIndex,
     scrollToSlide,
   ]);
@@ -350,12 +352,12 @@ export default function EarningsTicker() {
                   index + 1
                 }`}
                 aria-current={
-                  activeIndex === index
+                  safeActiveIndex === index
                     ? "true"
                     : undefined
                 }
                 className={
-                  activeIndex === index
+                  safeActiveIndex === index
                     ? "isActive"
                     : ""
                 }
@@ -376,3 +378,4 @@ export default function EarningsTicker() {
     </section>
   );
 }
+

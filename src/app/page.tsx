@@ -11,9 +11,7 @@ import {
   Fuel,
   Gauge,
   Globe2,
-  LockKeyhole,
-  Menu,
-  MessageCircle,
+  LockKeyhole,  MessageCircle,
   Rocket,
   ShieldCheck,
   Sparkles,
@@ -532,6 +530,7 @@ export default function Home() {
     </main>
   );
 }
+
 
 
 
