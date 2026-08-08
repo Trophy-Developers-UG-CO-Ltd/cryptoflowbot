@@ -1,3 +1,6 @@
+import EarningsTicker from "@/components/EarningsTicker";
+import CommunityPopup from "@/components/CommunityPopup";
+import MobileMenu from "@/components/MobileMenu";
 import Image from "next/image";
 import {
   ArrowRight,
@@ -80,7 +83,7 @@ const features = [
   },
   {
     title: "Community Support",
-    text: "Access the CryptoFlow Bot community through WhatsApp and Telegram.",
+    text: "24/7",
     icon: MessageCircle,
   },
 ];
@@ -90,6 +93,7 @@ const exchanges = ["BINANCE", "KRAKEN", "BYBIT", "HYPERLIQUID", "MEXC"];
 export default function Home() {
   return (
     <main>
+      <CommunityPopup />
       <div className="announcement">
         <div className="container announcementInner">
           <span>
@@ -130,9 +134,7 @@ export default function Home() {
             <a href="#faq">FAQ</a>
           </nav>
 
-          <button className="menuButton" type="button" aria-label="Open menu">
-            <Menu size={28} />
-          </button>
+          <MobileMenu />
         </div>
       </header>
 
@@ -281,8 +283,14 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="exchangeMain">
-              <strong>BINANCE</strong>
+            <div className="exchangeMain exchangeMainBinance">
+              <Image
+                src="/images/binance.png"
+                alt="Binance"
+                width={170}
+                height={52}
+                className="exchangeLogoImage"
+              />
               <span>Supported Exchange</span>
             </div>
 
@@ -405,6 +413,8 @@ export default function Home() {
         </div>
       </section>
 
+      <EarningsTicker />
+
       <section className="section faqSection" id="faq">
         <div className="container">
           <div className="sectionHeading">
@@ -523,5 +533,10 @@ export default function Home() {
     </main>
   );
 }
+
+
+
+
+
 
 

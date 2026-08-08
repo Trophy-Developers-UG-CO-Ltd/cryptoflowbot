@@ -1948,3 +1948,1339 @@ footer {
   }
 }
 
+
+/* =========================================================
+   MOBILE NAVIGATION
+   ========================================================= */
+
+.mobileMenuOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147482000;
+  display: flex;
+  justify-content: flex-end;
+  background: rgba(0, 6, 12, 0.78);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: mobileMenuOverlayIn 180ms ease-out;
+}
+
+.mobileMenuPanel {
+  width: min(88vw, 390px);
+  height: 100dvh;
+  padding:
+    22px
+    20px
+    calc(24px + env(safe-area-inset-bottom));
+  overflow-y: auto;
+  border-left: 1px solid rgba(45, 226, 188, 0.24);
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(16, 209, 165, 0.12),
+      transparent 34%
+    ),
+    #04101b;
+  box-shadow:
+    -30px 0 80px rgba(0, 0, 0, 0.55);
+  animation: mobileMenuSlideIn 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobileMenuHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 21px;
+  border-bottom: 1px solid rgba(55, 218, 185, 0.16);
+}
+
+.mobileMenuHeader strong {
+  color: #ffffff;
+  font-size: 15px;
+  letter-spacing: 0.07em;
+}
+
+.mobileMenuClose {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(72, 243, 199, 0.16);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.035);
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.mobileMenuLinks {
+  display: grid;
+  padding: 20px 0;
+}
+
+.mobileMenuLinks a {
+  display: flex;
+  align-items: center;
+  min-height: 58px;
+  padding: 0 5px;
+  border-bottom: 1px solid rgba(81, 174, 158, 0.12);
+  color: #d7e1e5;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+}
+
+.mobileMenuLinks a:hover {
+  color: var(--green-light);
+}
+
+.mobileMenuActions {
+  display: grid;
+  gap: 11px;
+  padding-top: 8px;
+}
+
+.mobileMenuWhatsapp,
+.mobileMenuRegister {
+  min-height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.mobileMenuWhatsapp {
+  color: #ffffff;
+  background:
+    linear-gradient(
+      180deg,
+      #19c99a,
+      #087d63
+    );
+}
+
+.mobileMenuRegister {
+  color: #1b1300;
+  background:
+    linear-gradient(
+      180deg,
+      #ffd15c,
+      #e99a07
+    );
+}
+
+@keyframes mobileMenuOverlayIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes mobileMenuSlideIn {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (min-width: 821px) {
+  .mobileMenuOverlay {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobileMenuOverlay,
+  .mobileMenuPanel {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   CRYPTOFLOW COMMUNITY POPUP V2
+   ========================================================= */
+
+.cfPopupV2Overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2147483646 !important;
+
+  display: grid !important;
+  place-items: center !important;
+
+  width: 100vw !important;
+  height: 100dvh !important;
+
+  padding: 20px;
+
+  background: rgba(0, 5, 10, 0.84) !important;
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  animation: cfPopupOverlayIn 220ms ease-out both;
+}
+
+.cfPopupV2 {
+  position: relative !important;
+  z-index: 2147483647 !important;
+
+  width: min(470px, calc(100vw - 30px)) !important;
+
+  padding: 38px 32px 27px;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(53, 232, 191, 0.34);
+
+  border-radius: 15px;
+
+  background:
+    radial-gradient(
+      circle at 50% -10%,
+      rgba(16, 209, 165, 0.21),
+      transparent 43%
+    ),
+    linear-gradient(
+      145deg,
+      #071824,
+      #020a12
+    ) !important;
+
+  box-shadow:
+    0 35px 120px rgba(0, 0, 0, 0.82),
+    0 0 60px rgba(16, 209, 165, 0.12);
+
+  color: #ffffff;
+
+  text-align: center;
+
+  animation:
+    cfPopupCardIn
+    350ms
+    cubic-bezier(0.16, 1, 0.3, 1)
+    both;
+}
+
+.cfPopupV2Close {
+  position: absolute;
+
+  top: 14px;
+  right: 14px;
+
+  width: 38px;
+  height: 38px;
+
+  display: grid;
+  place-items: center;
+
+  padding: 0;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.04);
+
+  color: #96a8b1;
+
+  cursor: pointer;
+}
+
+.cfPopupV2Close:hover {
+  color: #ffffff;
+
+  background:
+    rgba(255, 255, 255, 0.09);
+}
+
+.cfPopupV2Logo {
+  width: 86px;
+  height: 86px;
+
+  display: grid;
+  place-items: center;
+
+  margin: 0 auto 19px;
+
+  filter:
+    drop-shadow(
+      0 0 22px
+      rgba(16, 209, 165, 0.28)
+    );
+}
+
+.cfPopupV2Logo img {
+  width: 84px;
+  height: 84px;
+
+  display: block;
+
+  object-fit: contain;
+
+  border-radius: 17px;
+}
+
+.cfPopupV2Eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  color: #36e7bc;
+
+  font-size: 10px;
+  font-weight: 900;
+
+  letter-spacing: 0.14em;
+}
+
+.cfPopupV2 h2 {
+  margin: 10px 0 12px;
+
+  color: #ffffff;
+
+  font-size: clamp(30px, 6vw, 39px);
+
+  line-height: 1.05;
+
+  letter-spacing: -0.035em;
+}
+
+.cfPopupV2Text {
+  max-width: 390px;
+
+  margin: 0 auto;
+
+  color: #a2b2bb;
+
+  font-size: 14px;
+
+  line-height: 1.65;
+}
+
+.cfPopupV2Points {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin: 21px 0;
+
+  color: #c3d0d4;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.cfPopupV2Points i {
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: #1ad7aa;
+}
+
+.cfPopupV2Actions {
+  display: grid;
+
+  gap: 10px;
+}
+
+.cfPopupV2Whatsapp {
+  min-height: 66px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  padding: 10px 20px;
+
+  border-radius: 8px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      180deg,
+      #1ac99b,
+      #087e64
+    );
+
+  box-shadow:
+    0 12px 35px
+    rgba(16, 209, 165, 0.18);
+}
+
+.cfPopupV2Whatsapp span {
+  display: flex;
+  flex-direction: column;
+
+  text-align: left;
+}
+
+.cfPopupV2Whatsapp strong {
+  font-size: 14px;
+}
+
+.cfPopupV2Whatsapp small {
+  margin-top: 3px;
+
+  color:
+    rgba(255, 255, 255, 0.73);
+
+  font-size: 10px;
+}
+
+.cfPopupV2Telegram {
+  min-height: 50px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  border:
+    1px solid
+    rgba(72, 243, 199, 0.24);
+
+  border-radius: 8px;
+
+  color: #dbe7e9;
+
+  background:
+    rgba(8, 29, 42, 0.9);
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.cfPopupV2Later {
+  margin-top: 17px;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #748a94;
+
+  font-size: 10px;
+
+  cursor: pointer;
+}
+
+.cfPopupV2Progress {
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  height: 3px;
+
+  background:
+    rgba(255, 255, 255, 0.05);
+}
+
+.cfPopupV2Progress span {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  transform-origin: left;
+
+  background:
+    linear-gradient(
+      90deg,
+      #078a70,
+      #3cf2c6
+    );
+
+  animation:
+    cfPopupProgress
+    15s
+    linear
+    forwards;
+}
+
+@keyframes cfPopupOverlayIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cfPopupCardIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(22px)
+      scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+@keyframes cfPopupProgress {
+  from {
+    transform: scaleX(1);
+  }
+
+  to {
+    transform: scaleX(0);
+  }
+}
+
+@media (max-width: 560px) {
+  .cfPopupV2Overlay {
+    place-items: end center !important;
+
+    padding:
+      10px
+      10px
+      calc(
+        10px +
+        env(safe-area-inset-bottom)
+      );
+  }
+
+  .cfPopupV2 {
+    width: 100% !important;
+
+    padding:
+      31px
+      20px
+      23px;
+
+    border-radius: 17px;
+  }
+
+  .cfPopupV2Logo {
+    width: 70px;
+    height: 70px;
+  }
+
+  .cfPopupV2Logo img {
+    width: 68px;
+    height: 68px;
+  }
+
+  .cfPopupV2 h2 {
+    font-size: 30px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cfPopupV2Overlay,
+  .cfPopupV2,
+  .cfPopupV2Progress span {
+    animation: none;
+  }
+}
+
+
+/* =========================================================
+   STICKY TOP UTILITY BAR + HEADER
+   ========================================================= */
+
+:root {
+  --utility-bar-height: 54px;
+}
+
+.announcement {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+
+  height: var(--utility-bar-height);
+  min-height: var(--utility-bar-height);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.siteHeader {
+  position: sticky !important;
+  top: var(--utility-bar-height) !important;
+  z-index: 999 !important;
+}
+
+
+/* =========================================================
+   ALL PRIMARY CTA BUTTONS
+   Attention pulse every 5 seconds
+   ========================================================= */
+
+.announcementInner a,
+.button,
+.mobileMenuWhatsapp,
+.mobileMenuRegister,
+.communityPopupWhatsapp,
+.communityPopupTelegram,
+.cfPopupV2Whatsapp,
+.cfPopupV2Telegram {
+  transform-origin: center;
+  will-change: transform;
+
+  animation:
+    cryptoFlowCtaPulse
+    5s
+    ease-in-out
+    infinite;
+}
+
+
+/* Keep buttons interactive */
+
+.announcementInner a:hover,
+.button:hover,
+.mobileMenuWhatsapp:hover,
+.mobileMenuRegister:hover,
+.communityPopupWhatsapp:hover,
+.communityPopupTelegram:hover,
+.cfPopupV2Whatsapp:hover,
+.cfPopupV2Telegram:hover {
+  filter: brightness(1.08);
+}
+
+
+/* Brief attention movement, then remain still */
+
+@keyframes cryptoFlowCtaPulse {
+  0%,
+  74% {
+    transform: scale(1);
+  }
+
+  79% {
+    transform: scale(1.075);
+  }
+
+  83% {
+    transform: scale(0.985);
+  }
+
+  87% {
+    transform: scale(1.045);
+  }
+
+  91%,
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .announcementInner a,
+  .button,
+  .mobileMenuWhatsapp,
+  .mobileMenuRegister,
+  .communityPopupWhatsapp,
+  .communityPopupTelegram,
+  .cfPopupV2Whatsapp,
+  .cfPopupV2Telegram {
+    animation: none !important;
+  }
+}
+
+
+/* =========================================================
+   EARNINGS TICKER
+   ========================================================= */
+
+.earningsSection {
+  padding: 68px 0;
+  overflow: hidden;
+  border-top: 1px solid rgba(61, 215, 186, 0.12);
+  border-bottom: 1px solid rgba(61, 215, 186, 0.12);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(16, 209, 165, 0.06), transparent 36%),
+    #04111c;
+}
+
+.earningsTickerViewport {
+  position: relative;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.earningsTickerTrack {
+  display: flex;
+  gap: 18px;
+  width: max-content;
+  animation: cryptoFlowEarningsLeftToRight 32s linear infinite;
+}
+
+.earningsTickerCard {
+  width: 270px;
+  min-width: 270px;
+  padding: 22px 20px;
+  border: 1px solid rgba(61, 215, 186, 0.18);
+  border-radius: 12px;
+  background:
+    linear-gradient(145deg, rgba(9, 27, 41, 0.96), rgba(4, 15, 25, 0.96));
+  box-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1px rgba(255,255,255,0.02);
+}
+
+.earningsTickerTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.earningsTickerTop strong {
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.earningsTickerTop span {
+  color: #8599a6;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.earningsTickerAmount {
+  margin-top: 16px;
+  color: #4cf39f;
+  font-size: 31px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+@keyframes cryptoFlowEarningsLeftToRight {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 820px) {
+  .earningsTickerCard {
+    width: 235px;
+    min-width: 235px;
+    padding: 18px 16px;
+  }
+
+  .earningsTickerTop strong {
+    font-size: 16px;
+  }
+
+  .earningsTickerAmount {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 600px) {
+  .earningsSection {
+    padding: 54px 0;
+  }
+
+  .earningsTickerViewport {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .earningsTickerTrack {
+    gap: 14px;
+    animation-duration: 26s;
+  }
+
+  .earningsTickerCard {
+    width: 210px;
+    min-width: 210px;
+  }
+
+  .earningsTickerAmount {
+    font-size: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .earningsTickerViewport {
+    overflow-x: auto;
+  }
+
+  .earningsTickerTrack {
+    animation: none;
+  }
+}
+
+/* Exchange logos */
+.exchangeLogoImage {
+  display: block;
+  width: auto;
+  max-width: 170px;
+  height: 46px;
+  object-fit: contain;
+}
+
+.exchangeMainBinance {
+  padding: 24px;
+}
+
+@media (max-width: 600px) {
+  .exchangeLogoImage {
+    max-width: 145px;
+    height: 40px;
+  }
+}
+
+/* =========================================================
+   EARNINGS TICKER V2
+   ========================================================= */
+
+.earningsV2Section {
+  position: relative;
+
+  padding: 76px 0 64px;
+
+  overflow: hidden;
+
+  border-block:
+    1px solid
+    rgba(61, 215, 186, 0.14);
+
+  background:
+    radial-gradient(
+      circle at 50% 10%,
+      rgba(15, 207, 163, 0.08),
+      transparent 35%
+    ),
+    #04101a;
+}
+
+.earningsV2Heading {
+  margin-bottom: 34px;
+}
+
+.earningsV2Viewport {
+  width: 100%;
+
+  overflow: hidden;
+
+  padding: 7px 0 17px;
+
+  -webkit-mask-image:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      #000 5%,
+      #000 95%,
+      transparent 100%
+    );
+
+  mask-image:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      #000 5%,
+      #000 95%,
+      transparent 100%
+    );
+}
+
+
+/* Desktop auto-moving track */
+
+.earningsV2DesktopTrack {
+  display: flex;
+
+  width: max-content;
+
+  gap: 22px;
+
+  padding-inline: 22px;
+
+  animation:
+    earningsV2MoveRight
+    38s
+    linear
+    infinite;
+
+  will-change: transform;
+}
+
+
+/* Pause entire earnings rail on hover */
+
+.earningsV2Viewport:hover
+.earningsV2DesktopTrack {
+  animation-play-state: paused;
+}
+
+
+/* Large cards */
+
+.earningsV2Card {
+  position: relative;
+
+  width: 350px;
+  min-width: 350px;
+
+  min-height: 185px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 25px 25px 23px;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(59, 224, 188, 0.20);
+
+  border-radius: 15px;
+
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(17, 209, 165, 0.08),
+      transparent 42%
+    ),
+    linear-gradient(
+      145deg,
+      #0a1b28,
+      #05111b
+    );
+
+  box-shadow:
+    0 16px 48px
+      rgba(0, 0, 0, 0.27),
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.025);
+
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.earningsV2Card::before {
+  content: "";
+
+  position: absolute;
+
+  width: 130px;
+  height: 130px;
+
+  right: -55px;
+  top: -55px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(27, 225, 174, 0.06);
+
+  filter: blur(5px);
+
+  pointer-events: none;
+}
+
+.earningsV2Card:hover {
+  transform: translateY(-4px);
+
+  border-color:
+    rgba(59, 224, 188, 0.42);
+
+  box-shadow:
+    0 20px 55px
+      rgba(0, 0, 0, 0.34),
+    0 0 30px
+      rgba(18, 213, 168, 0.07);
+}
+
+
+/* Top row */
+
+.earningsV2CardTop {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+.earningsV2Type {
+  color: #8399a4;
+
+  font-size: 10px;
+  font-weight: 900;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+}
+
+.earningsV2Meta {
+  padding:
+    5px
+    9px;
+
+  border:
+    1px solid
+    rgba(244, 177, 36, 0.22);
+
+  border-radius: 999px;
+
+  color: #e8b64a;
+
+  background:
+    rgba(244, 177, 36, 0.06);
+
+  font-size: 10px;
+  font-weight: 800;
+}
+
+
+/* Glowing earnings figure */
+
+.earningsV2Amount {
+  position: relative;
+  z-index: 2;
+
+  display: block;
+
+  margin:
+    22px
+    0
+    18px;
+
+  color: #3ff09b;
+
+  font-size: 32px;
+  font-weight: 950;
+
+  line-height: 1;
+
+  letter-spacing: -0.035em;
+
+  text-shadow:
+    0 0 8px
+      rgba(63, 240, 155, 0.32),
+    0 0 20px
+      rgba(63, 240, 155, 0.15);
+
+  animation:
+    earningsNumberGlow
+    3.4s
+    ease-in-out
+    infinite;
+}
+
+
+/* Bottom row */
+
+.earningsV2Bottom {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 14px;
+
+  padding-top: 17px;
+
+  border-top:
+    1px solid
+    rgba(255, 255, 255, 0.055);
+}
+
+.earningsV2Bottom > strong {
+  color: #e7edf0;
+
+  font-size: 14px;
+}
+
+.earningsV2Live {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  color: #5fc9a6;
+
+  font-size: 9px;
+  font-weight: 900;
+
+  letter-spacing: 0.08em;
+}
+
+.earningsV2Live i {
+  width: 7px;
+  height: 7px;
+
+  display: block;
+
+  border-radius: 50%;
+
+  background: #24df9a;
+
+  box-shadow:
+    0 0 9px
+    rgba(36, 223, 154, 0.72);
+
+  animation:
+    earningsLiveDot
+    1.8s
+    ease-in-out
+    infinite;
+}
+
+
+/* Hidden desktop/mobile duplicate */
+
+.earningsV2MobileTrack {
+  display: none;
+}
+
+
+/* Disclosure */
+
+.earningsV2Disclosure {
+  max-width: 790px;
+
+  margin:
+    25px
+    auto
+    0;
+
+  color: #647a85;
+
+  text-align: center;
+
+  font-size: 10px;
+
+  line-height: 1.55;
+}
+
+
+/* Left-to-right motion */
+
+@keyframes earningsV2MoveRight {
+  from {
+    transform:
+      translateX(-50%);
+  }
+
+  to {
+    transform:
+      translateX(0);
+  }
+}
+
+
+/* Gentle live glow — not rapid flashing */
+
+@keyframes earningsNumberGlow {
+  0%,
+  100% {
+    text-shadow:
+      0 0 7px
+        rgba(63, 240, 155, 0.24),
+      0 0 18px
+        rgba(63, 240, 155, 0.10);
+  }
+
+  50% {
+    text-shadow:
+      0 0 11px
+        rgba(63, 240, 155, 0.50),
+      0 0 28px
+        rgba(63, 240, 155, 0.20);
+  }
+}
+
+@keyframes earningsLiveDot {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scale(0.9);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.16);
+  }
+}
+
+
+/* =========================================================
+   TABLET / MOBILE
+   Switch from automated marquee to manual native swipe
+   ========================================================= */
+
+@media (max-width: 820px) {
+
+  .earningsV2Viewport {
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    padding:
+      8px
+      16px
+      20px;
+
+    -webkit-mask-image: none;
+    mask-image: none;
+
+    scroll-snap-type:
+      x mandatory;
+
+    overscroll-behavior-inline:
+      contain;
+
+    scrollbar-width:
+      none;
+
+    -webkit-overflow-scrolling:
+      touch;
+  }
+
+  .earningsV2Viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .earningsV2DesktopTrack {
+    display: none;
+  }
+
+  .earningsV2MobileTrack {
+    display: flex;
+
+    width: max-content;
+
+    gap: 15px;
+
+    padding-right: 16px;
+  }
+
+  .earningsV2Card {
+    width:
+      min(
+        82vw,
+        340px
+      );
+
+    min-width:
+      min(
+        82vw,
+        340px
+      );
+
+    min-height: 175px;
+
+    scroll-snap-align: center;
+  }
+
+  .earningsV2Amount {
+    font-size: 29px;
+  }
+}
+
+
+@media (max-width: 520px) {
+
+  .earningsV2Section {
+    padding:
+      58px
+      0
+      48px;
+  }
+
+  .earningsV2Card {
+    width: 82vw;
+    min-width: 82vw;
+
+    padding:
+      22px
+      20px;
+
+    border-radius: 13px;
+  }
+
+  .earningsV2Amount {
+    font-size:
+      clamp(
+        24px,
+        7vw,
+        29px
+      );
+  }
+}
+
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .earningsV2DesktopTrack,
+  .earningsV2Amount,
+  .earningsV2Live i {
+    animation: none !important;
+  }
+
+  .earningsV2Viewport {
+    overflow-x: auto;
+  }
+}
+
