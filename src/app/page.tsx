@@ -397,7 +397,6 @@ export default function Home() {
       </section>
 
       <section className="automationBanner">
-        <div className="automationChart" />
 
         <div className="container automationInner">
           <div>
@@ -533,6 +532,7 @@ export default function Home() {
     </main>
   );
 }
+
 
 
 

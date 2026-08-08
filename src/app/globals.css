@@ -3284,3 +3284,614 @@ footer {
   }
 }
 
+
+/* =========================================================
+   REAL EARNINGS SCREENSHOT SLIDER
+   Desktop: 3
+   Tablet: 2
+   Mobile: 1
+   ========================================================= */
+
+.earningsScreensSection {
+  position: relative;
+  overflow: hidden;
+
+  padding: 78px 0 62px;
+
+  border-block:
+    1px solid
+    rgba(55, 221, 187, 0.14);
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(17, 201, 161, 0.10),
+      transparent 35%
+    ),
+    linear-gradient(
+      180deg,
+      #06131e,
+      #020b13
+    );
+}
+
+.earningsScreensSection::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.18;
+
+  background-image:
+    linear-gradient(
+      rgba(43, 224, 185, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(43, 224, 185, 0.05) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    50px
+    50px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      black,
+      transparent 80%
+    );
+}
+
+.earningsScreensHeader {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+
+  align-items: end;
+  justify-content: space-between;
+
+  gap: 30px;
+
+  margin-bottom: 34px;
+}
+
+.earningsScreensHeading {
+  max-width: 680px;
+}
+
+.earningsScreensEyebrow {
+  display: block;
+
+  margin-bottom: 9px;
+
+  color: var(--green);
+
+  font-size: 11px;
+  font-weight: 900;
+
+  letter-spacing: 0.16em;
+}
+
+.earningsScreensHeading h2 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size:
+    clamp(
+      34px,
+      4.5vw,
+      52px
+    );
+
+  line-height: 1.04;
+
+  letter-spacing: -0.035em;
+}
+
+.earningsScreensHeading p {
+  max-width: 590px;
+
+  margin:
+    14px
+    0
+    0;
+
+  color: #92a5af;
+
+  font-size: 14px;
+
+  line-height: 1.65;
+}
+
+
+/* Controls */
+
+.earningsScreensControls {
+  display: flex;
+
+  gap: 9px;
+}
+
+.earningsScreensControls button {
+  width: 47px;
+  height: 47px;
+
+  display: grid;
+  place-items: center;
+
+  padding: 0;
+
+  border:
+    1px solid
+    rgba(61, 226, 191, 0.23);
+
+  border-radius: 50%;
+
+  color: #dce9e8;
+
+  background:
+    rgba(8, 30, 42, 0.86);
+
+  cursor: pointer;
+
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.earningsScreensControls button:hover {
+  transform: translateY(-2px);
+
+  border-color:
+    rgba(61, 226, 191, 0.5);
+
+  background:
+    rgba(12, 58, 60, 0.92);
+}
+
+
+/* Slider */
+
+.earningsScreensOuter {
+  position: relative;
+  z-index: 2;
+
+  width:
+    min(
+      calc(100% - 40px),
+      var(--max)
+    );
+
+  margin-inline: auto;
+}
+
+.earningsScreensViewport {
+  width: 100%;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scroll-behavior: smooth;
+
+  scroll-snap-type:
+    x mandatory;
+
+  scrollbar-width: none;
+
+  overscroll-behavior-inline:
+    contain;
+
+  -webkit-overflow-scrolling:
+    touch;
+}
+
+.earningsScreensViewport::-webkit-scrollbar {
+  display: none;
+}
+
+.earningsScreensTrack {
+  display: flex;
+
+  gap: 20px;
+}
+
+
+/* 3 cards desktop */
+
+.earningsScreensCard {
+  position: relative;
+
+  flex:
+    0 0
+    calc(
+      (100% - 40px) /
+      3
+    );
+
+  min-width: 0;
+
+  padding: 12px;
+
+  overflow: hidden;
+
+  scroll-snap-align: start;
+
+  border:
+    1px solid
+    rgba(53, 218, 184, 0.18);
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(10, 29, 42, 0.97),
+      rgba(4, 15, 24, 0.98)
+    );
+
+  box-shadow:
+    0 20px 55px
+      rgba(0, 0, 0, 0.27),
+    inset
+      0 1px 0
+      rgba(255, 255, 255, 0.025);
+
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.earningsScreensCard:hover {
+  transform: translateY(-5px);
+
+  border-color:
+    rgba(61, 226, 191, 0.36);
+
+  box-shadow:
+    0 27px 70px
+      rgba(0, 0, 0, 0.34),
+    0 0 35px
+      rgba(22, 218, 171, 0.06);
+}
+
+
+/* Card chrome */
+
+.earningsScreensCardTop {
+  height: 42px;
+
+  display: grid;
+
+  grid-template-columns:
+    auto
+    1fr
+    auto;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding:
+    0
+    5px
+    10px;
+}
+
+.earningsScreensCardTop > span {
+  display: grid;
+
+  place-items: center;
+
+  width: 26px;
+  height: 26px;
+
+  border:
+    1px solid
+    rgba(63, 232, 195, 0.18);
+
+  border-radius: 7px;
+
+  color: var(--green);
+
+  background:
+    rgba(16, 209, 165, 0.05);
+
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.earningsScreensCardTop strong {
+  overflow: hidden;
+
+  color: #dce6e9;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+}
+
+.earningsScreensCardTop i {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  color: #627984;
+
+  font-size: 7px;
+  font-style: normal;
+  font-weight: 900;
+
+  letter-spacing: 0.08em;
+}
+
+.earningsScreensCardTop i span {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #20d99c;
+
+  box-shadow:
+    0 0 8px
+    rgba(32, 217, 156, 0.6);
+}
+
+
+/* Screenshot itself */
+
+.earningsScreensImage {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.045);
+
+  border-radius: 11px;
+
+  background: #03080d;
+}
+
+.earningsScreensImageAsset {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  object-fit: contain;
+}
+
+
+/* Bottom chrome */
+
+.earningsScreensCardBottom {
+  min-height: 37px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  padding:
+    11px
+    5px
+    0;
+
+  color: #6f848e;
+
+  font-size: 9px;
+}
+
+.earningsScreensCardBottom svg {
+  color: #23cfa0;
+}
+
+
+/* Dots */
+
+.earningsScreensDots {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-top: 28px;
+}
+
+.earningsScreensDots button {
+  width: 7px;
+  height: 7px;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: 999px;
+
+  background:
+    rgba(115, 147, 153, 0.35);
+
+  cursor: pointer;
+
+  transition:
+    width 180ms ease,
+    background 180ms ease;
+}
+
+.earningsScreensDots button.isActive {
+  width: 31px;
+
+  background: var(--green);
+}
+
+.earningsScreensDisclosure {
+  max-width: 730px;
+
+  margin:
+    19px
+    auto
+    0;
+
+  color: #566e79;
+
+  text-align: center;
+
+  font-size: 9px;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   MEDIUM — 2 PER VIEW
+   ========================================================= */
+
+@media (
+  min-width: 700px
+) and (
+  max-width: 1099px
+) {
+
+  .earningsScreensCard {
+    flex:
+      0 0
+      calc(
+        (100% - 20px) /
+        2
+      );
+  }
+}
+
+
+/* =========================================================
+   MOBILE — 1 PER VIEW
+   ========================================================= */
+
+@media (
+  max-width: 699px
+) {
+
+  .earningsScreensSection {
+    padding:
+      58px
+      0
+      48px;
+  }
+
+  .earningsScreensHeader {
+    align-items: center;
+
+    margin-bottom: 25px;
+  }
+
+  .earningsScreensHeading h2 {
+    font-size: 33px;
+  }
+
+  .earningsScreensHeading p {
+    font-size: 13px;
+  }
+
+  .earningsScreensOuter {
+    width: 100%;
+  }
+
+  .earningsScreensViewport {
+    padding-inline: 16px;
+
+    scroll-padding-inline:
+      16px;
+  }
+
+  .earningsScreensTrack {
+    gap: 14px;
+
+    padding-right: 16px;
+  }
+
+  .earningsScreensCard {
+    flex:
+      0 0
+      calc(
+        100vw - 48px
+      );
+
+    border-radius: 15px;
+
+    padding: 10px;
+  }
+
+  .earningsScreensControls {
+    display: none;
+  }
+
+  .earningsScreensCardTop i {
+    display: none;
+  }
+
+  .earningsScreensCardTop {
+    grid-template-columns:
+      auto
+      1fr;
+  }
+}
+
+
+/* Accessibility */
+
+@media (
+  prefers-reduced-motion:
+  reduce
+) {
+
+  .earningsScreensViewport {
+    scroll-behavior: auto;
+  }
+
+  .earningsScreensCard {
+    transition: none;
+  }
+}
+
+
+/* Remove green decorative line from Automated Execution section */
+.executionSection .executionLine,
+.executionSection .automationBeam,
+.executionSection .visualLine,
+.executionSection .decorLine {
+  display: none !important;
+}
+
+/* Automated Execution section spacing */
+.automationBanner {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+@media (max-width: 600px) {
+  .automationBanner {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+}
+
