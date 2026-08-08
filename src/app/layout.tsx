@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://cryptoflowbot.net";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -107,5 +107,6 @@ export default function RootLayout({
     </html>
   );
 }
+
 
 

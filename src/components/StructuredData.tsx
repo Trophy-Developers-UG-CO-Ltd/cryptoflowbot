@@ -1,6 +1,6 @@
 export default function StructuredData() {
   const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+    process.env.NEXT_PUBLIC_SITE_URL || "https://cryptoflowbot.net";
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -23,3 +23,4 @@ export default function StructuredData() {
     />
   );
 }
+
