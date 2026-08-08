@@ -72,7 +72,7 @@ export const metadata: Metadata = {
 
     images: [
       {
-        url: "/opengraph-image",
+        url: "/images/og.jpg",
         width: 1200,
         height: 630,
         alt: "CryptoFlow Bot automated trading system",
@@ -88,7 +88,7 @@ export const metadata: Metadata = {
     description:
       "Automate trade execution through API connectivity with supported exchanges.",
 
-    images: ["/opengraph-image"],
+    images: ["/images/og.jpg"],
   },
 
   other: {
@@ -107,3 +107,4 @@ export default function RootLayout({
     </html>
   );
 }
+
