@@ -1236,3 +1236,715 @@ footer {
     text-align: center;
   }
 }
+
+/* =========================================================
+   CRYPTOFLOW COMMUNITY POPUP
+   ========================================================= */
+
+.communityPopupOverlay {
+  position: fixed;
+  inset: 0;
+
+  z-index: 2147483000;
+
+  display: grid;
+  place-items: center;
+
+  padding: 20px;
+
+  background:
+    rgba(0, 6, 12, 0.82);
+
+  backdrop-filter:
+    blur(8px);
+
+  -webkit-backdrop-filter:
+    blur(8px);
+
+  animation:
+    communityOverlayEnter
+    220ms
+    ease-out
+    both;
+}
+
+.communityPopup {
+  position: relative;
+
+  width: min(
+    100%,
+    480px
+  );
+
+  overflow: hidden;
+
+  padding:
+    38px
+    34px
+    28px;
+
+  border:
+    1px solid
+    rgba(
+      37,
+      232,
+      185,
+      0.34
+    );
+
+  border-radius: 14px;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(
+        17,
+        208,
+        166,
+        0.18
+      ),
+      transparent 40%
+    ),
+    linear-gradient(
+      145deg,
+      #071723,
+      #020a12
+    );
+
+  box-shadow:
+    0 35px 110px
+      rgba(0, 0, 0, 0.8),
+    0 0 50px
+      rgba(
+        16,
+        209,
+        165,
+        0.1
+      );
+
+  text-align: center;
+
+  animation:
+    communityPopupEnter
+    360ms
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    )
+    both;
+}
+
+.communityPopup::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.4;
+
+  background-image:
+    linear-gradient(
+      rgba(
+        72,
+        243,
+        199,
+        0.04
+      ) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(
+        72,
+        243,
+        199,
+        0.04
+      ) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    35px
+    35px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      black,
+      transparent 76%
+    );
+}
+
+.communityPopupClose {
+  position: absolute;
+
+  top: 14px;
+  right: 14px;
+
+  z-index: 10;
+
+  width: 37px;
+  height: 37px;
+
+  display: grid;
+  place-items: center;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: 50%;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.04
+    );
+
+  color: #91a4ae;
+
+  cursor: pointer;
+
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.communityPopupClose:hover {
+  color: #ffffff;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.09
+    );
+
+  transform: rotate(4deg);
+}
+
+.communityPopupLogo {
+  position: relative;
+
+  z-index: 2;
+
+  width: 86px;
+  height: 86px;
+
+  display: grid;
+  place-items: center;
+
+  margin:
+    0 auto 18px;
+
+  border-radius: 18px;
+
+  filter:
+    drop-shadow(
+      0 0 20px
+      rgba(
+        17,
+        220,
+        173,
+        0.3
+      )
+    );
+}
+
+.communityPopupLogo img {
+  width: 82px;
+  height: 82px;
+
+  object-fit: contain;
+
+  border-radius: 17px;
+}
+
+.communityPopupEyebrow {
+  position: relative;
+
+  z-index: 2;
+
+  display:
+    inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  color: #36e5bb;
+
+  font-size: 10px;
+  font-weight: 900;
+
+  letter-spacing:
+    0.15em;
+}
+
+.communityPopup h2 {
+  position: relative;
+
+  z-index: 2;
+
+  margin:
+    11px
+    0
+    12px;
+
+  color: #ffffff;
+
+  font-size:
+    clamp(
+      29px,
+      5vw,
+      38px
+    );
+
+  font-weight: 900;
+
+  line-height: 1.05;
+
+  letter-spacing:
+    -0.035em;
+}
+
+.communityPopupIntro {
+  position: relative;
+
+  z-index: 2;
+
+  max-width: 390px;
+
+  margin:
+    0 auto;
+
+  color: #a0b0b9;
+
+  font-size: 14px;
+
+  line-height: 1.65;
+}
+
+.communityPopupHighlights {
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin:
+    21px
+    0;
+
+  color: #b9c7cc;
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+.communityPopupHighlights i {
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: #19d3a8;
+
+  box-shadow:
+    0 0 7px
+    rgba(
+      25,
+      211,
+      168,
+      0.6
+    );
+}
+
+.communityPopupActions {
+  position: relative;
+
+  z-index: 2;
+
+  display: grid;
+
+  gap: 10px;
+}
+
+.communityPopupWhatsapp {
+  min-height: 66px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  padding:
+    10px
+    22px;
+
+  border-radius: 8px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      180deg,
+      #19c89a,
+      #078065
+    );
+
+  box-shadow:
+    0 12px 35px
+    rgba(
+      11,
+      212,
+      163,
+      0.18
+    );
+
+  transition:
+    transform 170ms ease,
+    filter 170ms ease;
+}
+
+.communityPopupWhatsapp:hover {
+  transform:
+    translateY(-2px);
+
+  filter:
+    brightness(1.08);
+}
+
+.communityPopupWhatsapp span {
+  display: flex;
+
+  flex-direction: column;
+
+  text-align: left;
+}
+
+.communityPopupWhatsapp strong {
+  font-size: 14px;
+}
+
+.communityPopupWhatsapp small {
+  margin-top: 3px;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.73
+    );
+
+  font-size: 10px;
+}
+
+.communityPopupTelegram {
+  min-height: 49px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  border:
+    1px solid
+    rgba(
+      72,
+      243,
+      199,
+      0.22
+    );
+
+  border-radius: 8px;
+
+  color: #dce9e9;
+
+  background:
+    rgba(
+      8,
+      30,
+      42,
+      0.82
+    );
+
+  font-size: 12px;
+  font-weight: 800;
+
+  transition:
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.communityPopupTelegram:hover {
+  border-color:
+    rgba(
+      72,
+      243,
+      199,
+      0.5
+    );
+
+  background:
+    rgba(
+      12,
+      47,
+      59,
+      0.95
+    );
+}
+
+.communityPopupLater {
+  position: relative;
+
+  z-index: 2;
+
+  margin-top: 17px;
+
+  border: 0;
+
+  background: none;
+
+  color: #6f858f;
+
+  font-size: 10px;
+
+  cursor: pointer;
+}
+
+.communityPopupLater:hover {
+  color: #a9bbc2;
+}
+
+.communityPopupTimer {
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  height: 3px;
+
+  overflow: hidden;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.04
+    );
+}
+
+.communityPopupTimer span {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  transform-origin: left;
+
+  background:
+    linear-gradient(
+      90deg,
+      #0b9e7e,
+      #39f0c3
+    );
+
+  animation:
+    communityPopupCountdown
+    12s
+    linear
+    forwards;
+}
+
+@keyframes communityOverlayEnter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes communityPopupEnter {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(22px)
+      scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+@keyframes communityPopupCountdown {
+  from {
+    transform:
+      scaleX(1);
+  }
+
+  to {
+    transform:
+      scaleX(0);
+  }
+}
+
+@media (
+  max-width: 560px
+) {
+  .communityPopupOverlay {
+    align-items: end;
+
+    padding: 10px;
+  }
+
+  .communityPopup {
+    width: 100%;
+
+    padding:
+      32px
+      20px
+      calc(
+        23px +
+        env(
+          safe-area-inset-bottom
+        )
+      );
+
+    border-radius:
+      16px
+      16px
+      12px
+      12px;
+  }
+
+  .communityPopupLogo {
+    width: 72px;
+    height: 72px;
+  }
+
+  .communityPopupLogo img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .communityPopup h2 {
+    font-size: 30px;
+  }
+}
+
+@media (
+  prefers-reduced-motion:
+  reduce
+) {
+  .communityPopupOverlay,
+  .communityPopup,
+  .communityPopupTimer span {
+    animation: none;
+  }
+}
+
+/* CryptoFlow Bot brand logo */
+.brandLogoImage {
+  display: block;
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  border-radius: 12px;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 0 12px rgba(16, 209, 165, 0.18));
+}
+
+.footerLogoImage {
+  width: 39px;
+  height: 39px;
+  border-radius: 9px;
+}
+
+@media (max-width: 600px) {
+  .brandLogoImage {
+    width: 43px;
+    height: 43px;
+    border-radius: 10px;
+  }
+
+  .footerLogoImage {
+    width: 39px;
+    height: 39px;
+  }
+}
+
+/* =========================================================
+   TOP COMMUNITY CTA ATTENTION PULSE
+   Runs briefly every 10 seconds without affecting layout
+   ========================================================= */
+
+.announcementInner a {
+  transform-origin: center;
+  will-change: transform;
+  animation: communityTopPulse 5s ease-in-out infinite;
+}
+
+@keyframes communityTopPulse {
+  /* Remain still for most of the 10-second cycle */
+  0%,
+  82% {
+    transform: scale(1);
+  }
+
+  /* Attention pulse */
+  86% {
+    transform: scale(1.10);
+  }
+
+  89% {
+    transform: scale(0.97);
+  }
+
+  92% {
+    transform: scale(1.07);
+  }
+
+  95%,
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .announcementInner a {
+    animation: none;
+  }
+}
+

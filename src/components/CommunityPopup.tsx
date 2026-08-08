@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import {
   MessageCircle,
   Send,
@@ -9,65 +10,76 @@ import {
 } from "lucide-react";
 import { siteConfig } from "@/lib/site";
 
-const STORAGE_KEY = "cryptoflow-community-popup-dismissed";
+const AUTO_CLOSE_DELAY = 12000;
 
 export default function CommunityPopup() {
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    const dismissed = sessionStorage.getItem(STORAGE_KEY);
+  const hasOpened = useRef(false);
+  const autoCloseTimer = useRef<number | null>(null);
 
-    if (dismissed === "true") {
+  useEffect(() => {
+    const target = document.getElementById("about");
+
+    if (!target) {
       return;
     }
 
-    const handleScroll = () => {
-      const documentHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
-
-      if (documentHeight <= 0) {
-        return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (
+          entry.isIntersecting &&
+          !hasOpened.current
+        ) {
+          hasOpened.current = true;
+          setIsOpen(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.2,
       }
+    );
 
-      const scrollPercentage =
-        (window.scrollY / documentHeight) * 100;
-
-      if (scrollPercentage >= 3) {
-        setIsOpen(true);
-        window.removeEventListener("scroll", handleScroll);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, {
-      passive: true,
-    });
-
-    handleScroll();
+    observer.observe(target);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
     };
   }, []);
 
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen) {
+      return;
+    }
 
-    const handleKeyDown = (event: KeyboardEvent) => {
+    autoCloseTimer.current = window.setTimeout(() => {
+      setIsOpen(false);
+    }, AUTO_CLOSE_DELAY);
+
+    const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        closePopup();
+        setIsOpen(false);
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", handleEscape);
 
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      if (autoCloseTimer.current) {
+        window.clearTimeout(autoCloseTimer.current);
+      }
+
+      window.removeEventListener("keydown", handleEscape);
     };
   }, [isOpen]);
 
   const closePopup = () => {
+    if (autoCloseTimer.current) {
+      window.clearTimeout(autoCloseTimer.current);
+    }
+
     setIsOpen(false);
-    sessionStorage.setItem(STORAGE_KEY, "true");
   };
 
   if (!isOpen) {
@@ -77,7 +89,6 @@ export default function CommunityPopup() {
   return (
     <div
       className="communityPopupOverlay"
-      role="presentation"
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) {
           closePopup();
@@ -94,16 +105,22 @@ export default function CommunityPopup() {
           type="button"
           className="communityPopupClose"
           onClick={closePopup}
-          aria-label="Close community popup"
+          aria-label="Close popup"
         >
           <X size={20} />
         </button>
 
-        <div className="communityPopupIcon">
-          <UsersRound size={34} />
+        <div className="communityPopupLogo">
+          <Image
+            src="/images/logo.png"
+            alt="CryptoFlow Bot"
+            width={82}
+            height={82}
+          />
         </div>
 
         <span className="communityPopupEyebrow">
+          <UsersRound size={14} />
           CRYPTOFLOW BOT COMMUNITY
         </span>
 
@@ -111,17 +128,17 @@ export default function CommunityPopup() {
           Join Our Community
         </h2>
 
-        <p>
-          Connect with the CryptoFlow Bot community for updates,
-          setup guidance, platform discussions and announcements.
+        <p className="communityPopupIntro">
+          Connect with the CryptoFlow Bot community for platform updates,
+          setup guidance, discussions and important announcements.
         </p>
 
-        <div className="communityPopupBenefits">
-          <span>Community updates</span>
+        <div className="communityPopupHighlights">
+          <span>Updates</span>
           <i />
-          <span>Setup guidance</span>
+          <span>Setup Guidance</span>
           <i />
-          <span>Announcements</span>
+          <span>Community Support</span>
         </div>
 
         <div className="communityPopupActions">
@@ -132,11 +149,11 @@ export default function CommunityPopup() {
             className="communityPopupWhatsapp"
             onClick={closePopup}
           >
-            <MessageCircle size={21} />
+            <MessageCircle size={23} />
 
             <span>
               <strong>Join WhatsApp Community</strong>
-              <small>Connect with the community</small>
+              <small>Connect with CryptoFlow Bot users</small>
             </span>
           </a>
 
@@ -147,7 +164,7 @@ export default function CommunityPopup() {
             className="communityPopupTelegram"
             onClick={closePopup}
           >
-            <Send size={19} />
+            <Send size={18} />
             Join Telegram
           </a>
         </div>
@@ -159,6 +176,10 @@ export default function CommunityPopup() {
         >
           Maybe later
         </button>
+
+        <div className="communityPopupTimer">
+          <span />
+        </div>
       </section>
     </div>
   );

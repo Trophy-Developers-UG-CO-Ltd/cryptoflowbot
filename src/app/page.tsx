@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   ArrowRight,
   BarChart3,
@@ -106,9 +107,14 @@ export default function Home() {
       <header className="siteHeader">
         <div className="container headerInner">
           <a href="#home" className="brand" aria-label="CryptoFlow Bot home">
-            <div className="brandMark">
-              <TrendingUp size={25} />
-            </div>
+            <Image
+              src="/images/logo.png"
+              alt="CryptoFlow Bot"
+              width={52}
+              height={52}
+              className="brandLogoImage"
+              priority
+            />
 
             <div>
               <strong>CRYPTO FLOW BOT</strong>
@@ -488,9 +494,13 @@ export default function Home() {
       <footer>
         <div className="container footerInner">
           <a href="#home" className="brand footerBrand">
-            <div className="brandMark">
-              <TrendingUp size={22} />
-            </div>
+            <Image
+              src="/images/logo.png"
+              alt="CryptoFlow Bot"
+              width={39}
+              height={39}
+              className="brandLogoImage footerLogoImage"
+            />
 
             <div>
               <strong>CRYPTO FLOW BOT</strong>
@@ -513,3 +523,5 @@ export default function Home() {
     </main>
   );
 }
+
+
