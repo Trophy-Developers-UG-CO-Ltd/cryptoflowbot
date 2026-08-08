@@ -10,44 +10,31 @@ import {
 } from "lucide-react";
 import { siteConfig } from "@/lib/site";
 
+const SHOW_DELAY = 4000;
 const AUTO_CLOSE_DELAY = 12000;
 
 export default function CommunityPopup() {
   const [isOpen, setIsOpen] = useState(false);
-
-  const hasOpened = useRef(false);
   const autoCloseTimer = useRef<number | null>(null);
 
+  /*
+   * AUTOMATIC TRIGGER
+   * Runs once on every full page load/reload.
+   * No storage is used.
+   */
   useEffect(() => {
-    const target = document.getElementById("about");
-
-    if (!target) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (
-          entry.isIntersecting &&
-          !hasOpened.current
-        ) {
-          hasOpened.current = true;
-          setIsOpen(true);
-          observer.disconnect();
-        }
-      },
-      {
-        threshold: 0.2,
-      }
-    );
-
-    observer.observe(target);
+    const showTimer = window.setTimeout(() => {
+      setIsOpen(true);
+    }, SHOW_DELAY);
 
     return () => {
-      observer.disconnect();
+      window.clearTimeout(showTimer);
     };
   }, []);
 
+  /*
+   * Automatically close 12 seconds after appearing.
+   */
   useEffect(() => {
     if (!isOpen) {
       return;
@@ -105,7 +92,7 @@ export default function CommunityPopup() {
           type="button"
           className="communityPopupClose"
           onClick={closePopup}
-          aria-label="Close popup"
+          aria-label="Close community popup"
         >
           <X size={20} />
         </button>
