@@ -7,7 +7,7 @@ export const siteConfig = {
 
   links: {
     whatsapp:
-      "https://chat.whatsapp.com/KSeBUJZmchm9anj8FPiCv0?s=cl&p=a&ilr=4",
+      "https://chat.whatsapp.com/KKzs89cT9ZOFPSTExlRPqW?s=cl&p=a&mlu=4&ilr=4",
 
     telegram:
       "https://t.me/CryptoFlowBotAi",
